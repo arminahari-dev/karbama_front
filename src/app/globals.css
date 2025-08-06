@@ -1,0 +1,170 @@
+@import "tailwindcss";
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--background);
+  height: 100vh;
+  width: 100vw;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0f172a;
+    --foreground: #1e293b;
+    --primary: #3b82f6;
+    --secondary: #64748b;
+    --text: #f8fafc;
+    --muted: #475569;
+    --border: #334155;
+  }
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --color-text: var(--text);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --breakpoint-*: initial;
+  --breakpoint-desktop-large: 2560px;
+  --breakpoint-desktop: 1440px;
+  --breakpoint-laptop: 1024px;
+  --breakpoint-tablet: 768px;
+  --breakpoint-mobile: 425px;
+  --breakpoint-mobile-m: 375px;
+  --breakpoint-mobile-s: 320px;
+}
+
+button {
+  @apply bg-primary px-4 py-2 rounded-lg h-12 text-text cursor-pointer;
+  &:hover {
+    @apply bg-blue-500;
+  }
+  &:active {
+    @apply bg-blue-600;
+  }
+  &:disabled {
+    @apply bg-gray-500 opacity-50 cursor-not-allowed;
+  }
+}
+
+a {
+  @apply text-text no-underline cursor-pointer;
+}
+
+.card {
+  @apply flex flex-col justify-center gap-8 bg-foreground shadow-md p-6 border border-border rounded-lg;
+}
+
+.input {
+  @apply bg-foreground placeholder:opacity-60 px-3 py-2 border focus:border-2 focus:border-primary border-border rounded-lg focus:outline-none text-text placeholder:text-text;
+}
+
+.badge {
+  @apply px-2 rounded-full font-medium text-text text-sm;
+
+  &.badge-success {
+    @apply bg-green-500;
+  }
+
+  &.badge-warning {
+    @apply bg-orange-500;
+  }
+
+  &.badge-error {
+    @apply bg-red-500;
+  }
+}
+
+.modal {
+  @apply fixed inset-0 flex justify-center items-center backdrop-blur-[2px] p-4;
+}
+
+.modal-content {
+  @apply flex flex-col gap-8 bg-foreground shadow-lg p-8 border border-border rounded-lg w-full max-w-md font-semibold text-text text-xl;
+}
+
+.table {
+  @apply border border-border rounded-xl w-full h-fit border-separate;
+
+  th,
+  td {
+    @apply p-4 text-center whitespace-nowrap;
+  }
+
+  td {
+    @apply bg-foreground font-semibold text-text;
+  }
+
+  th {
+    @apply bg-border font-bold text-text;
+  }
+
+  thead tr:first-child th:first-child {
+    @apply rounded-tr-lg;
+  }
+
+  thead tr:first-child th:last-child {
+    @apply rounded-tl-lg;
+  }
+
+  tbody tr:last-child td:first-child {
+    @apply rounded-br-lg;
+  }
+
+  tbody tr:last-child td:last-child {
+    @apply rounded-bl-lg;
+  }
+}
+
+.datepicker {
+  background-color: "transparent";
+  height: 2.5rem;
+  border-radius: "8px";
+  font-size: 14px;
+  color: var(--text);
+  padding: 18px;
+  border: 1px solid #334155;
+  border-radius: 8px;
+  width: 100%;
+}
+
+.datepicker:focus {
+  border: 3px solid #3b82f6;
+  outline: none;
+}
+
+.switch {
+  @apply inline-block relative w-15 h-8;
+
+  input {
+    @apply absolute;
+  }
+
+  .slider {
+    @apply absolute inset-0 bg-gray-300 rounded-full transition duration-300 cursor-pointer;
+
+    &::before {
+      @apply bottom-1 left-1 absolute bg-white rounded-full w-6 h-6 content-[""] transition-transform duration-300;
+    }
+  }
+
+  input:checked + .slider {
+    @apply bg-blue-500;
+
+    &::before {
+      @apply translate-x-6;
+    }
+  }
+}
+
+hr {
+  @apply text-muted;
+}
