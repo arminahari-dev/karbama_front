@@ -2,21 +2,34 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { jwtVerify } from "jose";
 
-const secret = new TextEncoder().encode(process.env.ACCESS_TOKEN_SECRET_KEY!);
+if (!process.env.ACCESS_TOKEN_SECRET_KEY) {
+  throw new Error("ACCESS_TOKEN_SECRET_KEY is not set!");
+}
+
+const secret = new TextEncoder().encode(process.env.ACCESS_TOKEN_SECRET_KEY);
 
 export async function middleware(request: NextRequest) {
-  const accessToken = request.cookies.get("accessToken")?.value ?? null;
-  const token = request.cookies.get("roleToken")?.value ?? null;
+  console.log("Cookies keys:", [...request.cookies.keys()]);
+
+  const getCookieValue = (key: string) => {
+    if (!key) return null;
+    const cookie = request.cookies.get(key);
+    if (!cookie || !cookie.value) return null;
+    return cookie.value;
+  };
+
+  const accessToken = getCookieValue("accessToken");
+  const token = getCookieValue("roleToken");
 
   const pathname = request.nextUrl.pathname;
   let role: string | undefined = undefined;
 
-  if (token) {
+  if (token && token.length > 0) {
     try {
       const { payload } = await jwtVerify(token, secret);
       role = payload?.role as string;
-    } catch (e) {
-      console.error("JWT verification failed:", e);
+    } catch (error) {
+      console.error("JWT verify error:", error);
       return NextResponse.redirect(new URL("/auth", request.url));
     }
   }
@@ -34,7 +47,7 @@ export async function middleware(request: NextRequest) {
   if (pathname.startsWith("/freelancer") && role !== "FREELANCER") {
     return NextResponse.redirect(new URL("/unauthorized", request.url));
   }
-
+  
   if (pathname.startsWith("/owner") && !accessToken) {
     return NextResponse.redirect(new URL("/auth", request.url));
   }
@@ -46,9 +59,7 @@ export async function middleware(request: NextRequest) {
     (pathname.startsWith("/auth") && accessToken) ||
     (pathname.startsWith("/completeprofile") && accessToken)
   ) {
-    return NextResponse.redirect(
-      new URL(`${role?.toLocaleLowerCase()}/dashboard`, request.url)
-    );
+    return NextResponse.redirect(new URL(`${role?.toLocaleLowerCase()}/dashboard`, request.url));
   }
 
   return NextResponse.next();
