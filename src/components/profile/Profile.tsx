@@ -81,7 +81,7 @@ const Profile: React.FC = () => {
           <div className="flex flex-col items-start gap-4 order-1 max-tablet:order-2 !p-6 border border-border rounded-lg text-text">
             <h2 className="font-bold text-2xl">اطلاعات</h2>
             {isLoadingUser ? (
-              <Skeleton width="8rem" height="2rem" />
+              <Skeleton width="15rem" height="2rem" />
             ) : (
               <div className="group flex items-center">
                 <span>بایوگرافی :</span>&nbsp;
@@ -96,7 +96,7 @@ const Profile: React.FC = () => {
               </div>
             )}
             {isLoadingUser ? (
-              <Skeleton width="8rem" height="2rem" />
+              <Skeleton width="13rem" height="2rem" />
             ) : (
               <div className="group flex items-center">
                 <span>موبایل :</span>&nbsp;
@@ -111,7 +111,7 @@ const Profile: React.FC = () => {
               </div>
             )}
             {isLoadingUser ? (
-              <Skeleton width="8rem" height="2rem" />
+              <Skeleton width="11rem" height="2rem" />
             ) : (
               <div className="group flex items-center">
                 <span>ایمیل :</span>&nbsp;
@@ -126,7 +126,7 @@ const Profile: React.FC = () => {
               </div>
             )}
             {isLoadingUser ? (
-              <Skeleton width="8rem" height="2rem" />
+              <Skeleton width="9rem" height="2rem" />
             ) : (
               <div className="flex items-center">
                 <span>تاریخ عضویت :</span>&nbsp;
@@ -138,13 +138,13 @@ const Profile: React.FC = () => {
           </div>
           <div className="flex flex-col justify-center items-center gap-4 order-2 max-tablet:order-1 !p-6 border border-border rounded-lg text-text">
             {isLoadingUser ? (
-              <Skeleton width="8rem" height="2rem" />
+              <Skeleton width="15rem" height="2rem" />
             ) : (
               <h2 className="font-bold text-xl">{userprofile?.name}</h2>
             )}
 
             {isLoadingUser ? (
-              <Skeleton width="8rem" height="2rem" />
+              <Skeleton width="13rem" height="2rem" />
             ) : (
               <span className="flex items-center text-xl">
                 {userprofile?.status === 2 && "کابر تایید شده"}
