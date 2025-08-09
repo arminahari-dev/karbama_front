@@ -11,7 +11,7 @@ import {
   UserCircleIcon,
 } from "@heroicons/react/24/solid";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import toast from "react-hot-toast";
 
 type ModalType = "biography" | "phoneNumber" | "email" | null;
@@ -26,6 +26,8 @@ const Profile: React.FC = () => {
   const [phoneNumberValue, setPhoneNumberValue] = useState("");
 
   const [emailValue, setEmailValue] = useState("");
+
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const {
     updateUserEmail,
@@ -162,6 +164,7 @@ const Profile: React.FC = () => {
             ) : (
               <div className="relative">
                 <input
+                  ref={fileInputRef}
                   type="file"
                   accept="image/*"
                   className="hidden"
@@ -172,6 +175,9 @@ const Profile: React.FC = () => {
                       const picture = new FormData();
                       picture.append("avatar", file);
                       updateUserProfilePicture(picture);
+                    }
+                    if (fileInputRef.current) {
+                      fileInputRef.current.value = "";
                     }
                   }}
                 />
@@ -197,7 +203,7 @@ const Profile: React.FC = () => {
           </div>
         </div>
       </div>
-      
+
       {activeModal && (
         <EditModal
           content={
