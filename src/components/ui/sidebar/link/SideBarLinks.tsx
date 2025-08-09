@@ -81,7 +81,7 @@ const SideBarLinks: React.FC = () => {
   const links = role ? sideBarlink[role] : [];
 
   return (
-    <div className="flex flex-row tablet:flex-col max-tablet:justify-between items-center max-tablet:items-center tablet:gap-8 tablet:!p-8 max-tablet:!px-8 max-tablet:border-t max-tablet:border-t-border min-tablet:border-l min-tablet:border-l-border h-full whitespace-nowrap">
+    <div className="flex flex-row tablet:flex-col max-tablet:justify-between items-center max-tablet:items-center tablet:gap-8 bg-foreground tablet:!p-8 max-tablet:!px-8 max-tablet:border-t max-tablet:border-t-border min-tablet:border-l min-tablet:border-l-border h-full whitespace-nowrap">
       <Image className="max-tablet:hidden" src={logo} alt="logo" />
       {links.map((link, index) => (
         <Link
