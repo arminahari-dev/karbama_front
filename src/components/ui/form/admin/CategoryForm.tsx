@@ -81,7 +81,7 @@ const CategoryForm: React.FC = () => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="flex flex-col bg-foreground shadow-lg !p-4 rounded-lg h-dvh"
+      className="flex flex-col bg-foreground shadow-lg !p-4 rounded-lg"
     >
       <div className="grid grid-rows-[10%_90%] h-full">
         <div className="flex justify-center items-center h-full">

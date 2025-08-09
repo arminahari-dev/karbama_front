@@ -88,7 +88,7 @@ const ProjectForm: React.FC = () => {
 
   return (
     <form
-      className="flex flex-col bg-foreground shadow-lg !p-4 rounded-lg h-dvh"
+      className="flex flex-col bg-foreground shadow-lg !p-4 rounded-lg"
       onSubmit={handleSubmit(onSubmit)}
     >
       <div className="grid grid-rows-[10%_90%] h-full">
