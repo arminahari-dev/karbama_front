@@ -44,26 +44,6 @@ const Profile: React.FC = () => {
     }
   }, [userprofile]);
 
-  // راه حل 1: استفاده از onClick به جای label
-  const handleProfilePicClick = () => {
-    if (fileInputRef.current) {
-      fileInputRef.current.click();
-    }
-  };
-
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      const picture = new FormData();
-      picture.append("avatar", file);
-      updateUserProfilePicture(picture);
-    }
-
-    if (fileInputRef.current) {
-      fileInputRef.current.value = "";
-    }
-  };
-
   const handleSubmit = () => {
     switch (activeModal) {
       case "biography":
@@ -188,18 +168,25 @@ const Profile: React.FC = () => {
                   type="file"
                   accept="image/*"
                   className="hidden"
-                  onChange={handleFileChange}
+                  id="profile-pic-upload"
+                  onChange={(e) => {
+                    const file = e.target.files?.[0];
+                    if (file) {
+                      const picture = new FormData();
+                      picture.append("avatar", file);
+                      updateUserProfilePicture(picture);
+                    }
+                    if (fileInputRef.current) {
+                      fileInputRef.current.value = "";
+                    }
+                  }}
                 />
-
-                <button
-                  type="button"
-                  onClick={handleProfilePicClick}
-                  className="top-19 right-19 absolute bg-foreground hover:bg-opacity-80 !p-2 border border-border rounded-full transition-all duration-200 cursor-pointer"
-                  aria-label="ویرایش تصویر پروفایل"
+                <label
+                  htmlFor="profile-pic-upload"
+                  className="top-19 right-19 absolute bg-foreground !p-2 border border-border rounded-full cursor-pointer"
                 >
                   <PencilIcon className="size-5 text-text" />
-                </button>
-
+                </label>
                 {userprofile?.avatarUrl ? (
                   <Image
                     className="border border-border rounded-full size-28"
