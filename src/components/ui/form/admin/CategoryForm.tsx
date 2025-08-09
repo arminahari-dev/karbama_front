@@ -81,9 +81,9 @@ const CategoryForm: React.FC = () => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="flex flex-col bg-foreground shadow-lg !p-4 rounded-lg h-full"
+      className="flex flex-col bg-foreground shadow-lg !p-4 rounded-lg h-dvh"
     >
-      <div className="grid grid-rows-[10%_90%] h-full">
+      <div className="grid grid-rows-[10%_90%] h-dvh">
         <div className="flex justify-center items-center h-full">
           <h1 className="text-text text-2xl text-center">
             {isEditMode ? (
