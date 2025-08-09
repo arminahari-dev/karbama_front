@@ -29,7 +29,7 @@ export default function RootLayout({
     <html
       lang="fa"
       dir="rtl"
-      className={`flex justify-center items-center h-full ${vazirmatn.className}`}
+      className={`flex justify-center items-center ${vazirmatn.className}`}
     >
       <body>
         <Toaster />

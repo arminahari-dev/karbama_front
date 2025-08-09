@@ -13,7 +13,7 @@ export default function Home() {
 
   return (
     <div className="bg-background">
-      <nav className="flex justify-between items-center bg-foreground !px-6 !py-4 !h-20">
+      <nav className="flex justify-between items-center bg-foreground !px-6 !py-4">
         <div>
           <Image alt="logo" src={LOGO} width={40} height={40} />
         </div>
