@@ -36,7 +36,7 @@ const FreelancerDashboard: React.FC = () => {
         </p>
       </div>
       <div className="gap-4 grid !grid-cols-2 max-tablet:!grid-cols-1">
-        <div className="flex flex-row justify-between items-center bg-foreground !p-8 rounded-lg text-text">
+        <div className="flex flex-row justify-between items-center bg-foreground !px-6 !py-4 rounded-lg text-text">
           <div className="flex flex-col items-center gap-2 text-2xl">
             <span>درخواست ها</span>
             {isLoadingPropsals ? (
@@ -51,7 +51,7 @@ const FreelancerDashboard: React.FC = () => {
             <SquaresPlusIcon className="size-18" />
           </div>
         </div>
-        <div className="flex flex-row justify-between items-center bg-foreground !p-8 rounded-lg text-text">
+        <div className="flex flex-row justify-between items-center bg-foreground !px-6 !py-4 rounded-lg text-text">
           <div className="flex flex-col items-center gap-2 text-2xl">
             <span>درخواست های تایید شده</span>
             {isLoadingPropsals ? (

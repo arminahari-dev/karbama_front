@@ -32,7 +32,7 @@ const OwnerDashboard: React.FC = () => {
         </p>
       </div>
       <div className="gap-4 grid !grid-cols-2 max-tablet:!grid-cols-1">
-        <div className="flex flex-row justify-between items-center bg-foreground !p-8 border border-border rounded-lg text-text">
+        <div className="flex flex-row justify-between items-center bg-foreground !px-6 !py-4 border border-border rounded-lg text-text">
           <div className="flex flex-col items-center gap-2 text-2xl">
             <span>پروژه ها</span>
             {isLoadingProjects ? (
@@ -47,7 +47,7 @@ const OwnerDashboard: React.FC = () => {
             <SquaresPlusIcon className="size-18" />
           </div>
         </div>
-        <div className="flex flex-row justify-between items-center bg-foreground !p-8 border border-border rounded-lg text-text">
+        <div className="flex flex-row justify-between items-center bg-foreground !px-6 !py-4 border border-border rounded-lg text-text">
           <div className="flex flex-col items-center gap-2 text-2xl">
             <span>درخواست ها</span>
             {isLoadingProjects ? (

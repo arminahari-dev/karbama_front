@@ -20,7 +20,7 @@ export default function Home() {
         <button onClick={() => router.push("/auth")}>ورود / ثبت نام</button>
       </nav>
 
-      <section className="flex flex-col justify-center items-center gap-4 !px-6 !py-8 text-center">
+      <section className="flex flex-col justify-center items-center gap-4 !px-6 !py-4 text-center">
         <h1 className="font-extrabold text-primary text-3xl">
           به پلتفرم کارباما خوش آمدید
         </h1>
@@ -34,7 +34,7 @@ export default function Home() {
         <button onClick={() => router.push("/auth")}>همین حالا شروع کن</button>
       </section>
 
-      <section className="flex flex-col gap-4 bg-foreground !px-6 !py-8">
+      <section className="flex flex-col gap-4 bg-foreground !px-6 !py-4">
         <h2 className="font-semibold text-text text-3xl text-center">
           مراحل ثبت‌ نام
         </h2>
@@ -78,7 +78,7 @@ export default function Home() {
         </div>
       </section>
 
-      <footer className="bg-foreground !py-4 border-t border-border text-secondary text-sm text-center">
+      <footer className="bg-foreground !px-6 !py-4 border-t border-border text-secondary text-sm text-center">
         <div className="flex flex-col justify-between items-center gap-4">
           <div className="flex justify-center items-center gap-4">
             <Image alt="logo" src={LOGO} width={40} height={40} />
