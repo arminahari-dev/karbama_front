@@ -20,51 +20,51 @@ const SideBarLinks: React.FC = () => {
       {
         name: "داشبورد",
         path: "/admin/dashboard",
-        icon: <ChartPieIcon className="size-8" />,
+        icon: <ChartPieIcon className="size-6" />,
       },
       {
         name: "کاربران",
         path: "/admin/users",
-        icon: <UserIcon className="size-8" />,
+        icon: <UserIcon className="size-6" />,
       },
       {
         name: "دسته بندی",
         path: "/admin/categories",
-        icon: <TagIcon className="size-8" />,
+        icon: <TagIcon className="size-6" />,
       },
     ],
     owner: [
       {
         name: "آمار",
         path: "/owner/dashboard",
-        icon: <ChartPieIcon className="size-8" />,
+        icon: <ChartPieIcon className="size-6" />,
       },
       {
         name: "پروژه ها",
         path: "/owner/projects",
-        icon: <PresentationChartBarIcon className="size-8" />,
+        icon: <PresentationChartBarIcon className="size-6" />,
       },
       {
         name: "پرداخت‌",
         path: "/owner/payments",
-        icon: <CreditCardIcon className="size-8" />,
+        icon: <CreditCardIcon className="size-6" />,
       },
     ],
     freelancer: [
       {
         name: "داشبورد",
         path: "/freelancer/dashboard",
-        icon: <ChartPieIcon className="size-8" />,
+        icon: <ChartPieIcon className="size-6" />,
       },
       {
         name: "پروژه ها",
         path: "/freelancer/available-projects",
-        icon: <PresentationChartBarIcon className="size-8" />,
+        icon: <PresentationChartBarIcon className="size-6" />,
       },
       {
         name: "درخواست ها",
         path: "/freelancer/proposals",
-        icon: <PresentationChartBarIcon className="size-8" />,
+        icon: <PresentationChartBarIcon className="size-6" />,
       },
     ],
   };

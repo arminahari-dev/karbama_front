@@ -31,7 +31,9 @@ const SendOtpCard: React.FC<SendOtpCardProps> = ({
         />
         <button disabled={disabled}>
           {isPending ? (
-            <ArrowPathIcon className="size-6 text-primary animate-spin" />
+            <div className="flex justify-center items-center">
+              <ArrowPathIcon className="size-6 text-text animate-spin" />
+            </div>
           ) : (
             `${btnTitle}`
           )}

@@ -66,7 +66,7 @@ const NavBar: React.FC = () => {
           </Link>
         </div>
         <div className="flex items-center gap-4">
-          <BellIcon className="size-9 cursor-pointer" />
+          <BellIcon className="size-8 cursor-pointer" />
           {userprofile?.avatarUrl ? (
             <Image
               onClick={handleUserClick}
@@ -74,7 +74,7 @@ const NavBar: React.FC = () => {
               width={36}
               height={36}
               loading="lazy"
-              className="border border-border rounded-full size-9 cursor-pointer"
+              className="border border-border rounded-full size-8 cursor-pointer"
               src={userprofile?.avatarUrl}
             />
           ) : (

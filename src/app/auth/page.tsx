@@ -1,5 +1,5 @@
 "use client";
-import React, { FormEvent, useState } from "react";
+import React, { FormEvent, useEffect, useState } from "react";
 
 const SendOtpCard = React.lazy(
   () => import("@/components/ui/card/SendOtpCard")
@@ -19,7 +19,9 @@ const Auth: React.FC = () => {
   const [step, setStep] = useState(1);
   const [otp, setOtp] = useState("");
 
-  const { sendOtp, isPendingSendOtp } = useSendOtp();
+  const router = useRouter();
+
+  const { sendOtp, isPendingSendOtp, isSuccessSendOtp } = useSendOtp();
   const { checkOtp, isPendingCheckOtp } = useCheckOtp();
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
@@ -32,14 +34,11 @@ const Auth: React.FC = () => {
   const handleSendOtp = (e: FormEvent) => {
     e.preventDefault();
     sendOtp(phoneNumber);
-    setStep(2);
   };
-
-  const router = useRouter();
 
   const handleCheckOtp = async (e: FormEvent) => {
     e.preventDefault();
-    const {user} = await checkOtp({ phoneNumber, otp });
+    const { user } = await checkOtp({ phoneNumber, otp });
 
     if (!user?.isActive) {
       router.push("/completeprofile");
@@ -53,6 +52,12 @@ const Auth: React.FC = () => {
       router.push(`/${user?.role.toLowerCase()}/dashboard`);
     }
   };
+
+  useEffect(() => {
+    if (isSuccessSendOtp) {
+      setStep(2);
+    }
+  }, [isSuccessSendOtp]);
 
   return step === 1 ? (
     <SendOtpCard

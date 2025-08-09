@@ -12,7 +12,7 @@ export default function Home() {
   const router = useRouter();
 
   return (
-    <div className="bg-background min-h-screen">
+    <div className="bg-background">
       <nav className="flex justify-between items-center bg-foreground !px-6 !py-4">
         <div>
           <Image alt="logo" src={LOGO} width={40} height={40} />
