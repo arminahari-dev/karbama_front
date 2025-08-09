@@ -13,7 +13,7 @@ export default function Home() {
 
   return (
     <div className="bg-background">
-      <nav className="flex justify-between items-center bg-foreground !px-6 !py-4">
+      <nav className="pt-[env(safe-area-inset-top)] flex justify-between items-center bg-foreground !px-6 !py-4">
         <div>
           <Image alt="logo" src={LOGO} width={40} height={40} />
         </div>
@@ -71,8 +71,8 @@ export default function Home() {
             <div className="text-5xl">📧</div>
             <h3 className="font-semibold text-text text-xl">فعال‌سازی حساب</h3>
             <p className="text-secondary">
-              پس از تایید اطلاعات، حساب شما فعال شده و می‌توانید از
-              تمامی امکانات به عنوان فریلنسر یا کارفرما استفاده کنید.
+              پس از تایید اطلاعات، حساب شما فعال شده و می‌توانید از تمامی
+              امکانات به عنوان فریلنسر یا کارفرما استفاده کنید.
             </p>
           </div>
         </div>
@@ -98,9 +98,9 @@ export default function Home() {
               سوالات متداول
             </a>
           </div>
-          <div>
-            © {new Date().getFullYear()} تمامی حقوق محفوظ است. ساخته شده با ❤️
-            برای حرفه‌ای‌ ها
+          <div className="flex flex-col gap-8">
+            <span>ساخته شده با ❤️ برای حرفه ای ها </span>
+            <span>© {new Date().getFullYear()} تمامی حقوق محفوظ است.</span>
           </div>
         </div>
       </footer>
