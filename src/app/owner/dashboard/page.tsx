@@ -27,7 +27,7 @@ const OwnerDashboard: React.FC = () => {
     <div className="flex flex-col gap-4">
       <div className="flex flex-col items-start gap-2">
         <h1 className="font-bold text-text text-2xl">آمار کلی</h1>
-        <p className="text-muted text-right">
+        <p className="text-secondary text-right">
           اینجا می‌توانید اطلاعات و آمار مربوط به پروژه‌های خود را مشاهده کنید.
         </p>
       </div>

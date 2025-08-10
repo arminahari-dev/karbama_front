@@ -132,7 +132,7 @@ const Profile: React.FC = () => {
             ) : (
               <div className="flex items-center">
                 <span>تاریخ عضویت :</span>&nbsp;
-                <span className="text-xl">
+                <span className="font-bold text-xl">
                   {DateFormater(userprofile?.createdAt)}
                 </span>
               </div>
