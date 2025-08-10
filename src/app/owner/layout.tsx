@@ -8,11 +8,11 @@ export default function Layout({
   children: ReactNode;
 }>) {
   return (
-    <div className="grid max-tablet:grid-cols-none tablet:grid-cols-[auto_1fr] max-tablet:grid-rows-[90%_10%] w-full h-full">
+    <div className="grid max-tablet:grid-cols-none tablet:grid-cols-[auto_1fr] max-tablet:grid-rows-[90%_10%] w-full h-dvh">
       <div className="bottom-0 tablet:static max-tablet:fixed max-tablet:w-full max-tablet:h-[10%]">
         <SideBarLinks />
       </div>
-      <div className="grid grid-rows-[10%_90%] !p-4 overflow-hidden">
+      <div className="grid grid-rows-[10%_90%] overflow-hidden">
         <NavBar />
         {children}
       </div>

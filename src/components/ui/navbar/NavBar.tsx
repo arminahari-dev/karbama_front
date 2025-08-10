@@ -56,7 +56,7 @@ const NavBar: React.FC = () => {
 
   return (
     <>
-      <nav className="flex justify-between items-center text-text">
+      <nav className="flex justify-between items-center p-4 text-text">
         <div className="flex gap-4">
           <Link className="!text-text" href="#">
             راهنمایی
