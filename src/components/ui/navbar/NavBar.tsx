@@ -29,9 +29,7 @@ const NavBar: React.FC = () => {
 
   function handleLogout() {
     logOutUser();
-    setTimeout(() => {
-      router.push("/auth");
-    }, 2000);
+    router.push("/auth");
   }
 
   function handleGoToProfilePage() {
