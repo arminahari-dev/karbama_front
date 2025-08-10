@@ -12,7 +12,7 @@ export default function Layout({
       <div className="bottom-0 tablet:static max-tablet:fixed max-tablet:w-full max-tablet:h-[10%]">
         <SideBarLinks />
       </div>
-      <div className="grid grid-rows-[10%_90%] overflow-hidden">
+      <div className="grid grid-rows-[10%_90%] !pt-0 !pr-4 !pb-4 !pl-4 overflow-hidden">
         <NavBar />
         {children}
       </div>
