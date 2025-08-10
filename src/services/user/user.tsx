@@ -57,10 +57,12 @@ export const UpdateUserEMail = async (email: string) => {
 };
 
 export const UserLogOut = async () => {
-  await authFetch("/user/logout", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
+  setTimeout(() => {
+    authFetch("/user/logout", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+  }, 2000);
 };
