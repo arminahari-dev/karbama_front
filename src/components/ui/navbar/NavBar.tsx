@@ -108,8 +108,8 @@ const NavBar: React.FC = () => {
               className="flex !justify-between !items-center !px-4 !py-2 hover:bg-border rounded-lg text-text transition-colors duration-200 cursor-pointer"
             >
               {isPendingLogOutUser ? (
-                <div className="flex justify-center items-center">
-                  <ArrowPathIcon className="size-6 text-text animate-spin" />
+                <div className="flex justify-center items-center w-full">
+                  <ArrowPathIcon className="size-4 text-text animate-spin" />
                 </div>
               ) : (
                 <>
