@@ -2,11 +2,12 @@ import { UserLogOut } from "@/services/user/user";
 import { useMutation } from "@tanstack/react-query";
 
 const useUserLogout = () => {
-  const { mutateAsync: logoutuser } = useMutation({
-    mutationFn: UserLogOut,
-  });
+  const { mutateAsync: logOutUser, isPending: isPendingLogOutUser } =
+    useMutation({
+      mutationFn: UserLogOut,
+    });
 
-  return { logoutuser };
+  return { logOutUser, isPendingLogOutUser };
 };
 
 export default useUserLogout;

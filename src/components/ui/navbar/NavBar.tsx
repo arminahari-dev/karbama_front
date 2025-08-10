@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import {
+  ArrowPathIcon,
   ArrowRightStartOnRectangleIcon,
   BellIcon,
   CogIcon,
@@ -22,12 +23,12 @@ const NavBar: React.FC = () => {
   };
 
   const { userprofile } = useGetUserProfile();
-  const { logoutuser } = useUserLogout();
+  const { logOutUser, isPendingLogOutUser } = useUserLogout();
 
   const router = useRouter();
 
   function handleLogout() {
-    logoutuser();
+    logOutUser();
     setTimeout(() => {
       router.push("/auth");
     }, 2000);
@@ -106,8 +107,14 @@ const NavBar: React.FC = () => {
               onClick={handleLogout}
               className="flex !justify-between !items-center !px-4 !py-2 hover:bg-border rounded-lg text-text transition-colors duration-200 cursor-pointer"
             >
-              <span>خروج</span>
-              <ArrowRightStartOnRectangleIcon className="size-5" />
+              {isPendingLogOutUser ? (
+                <ArrowPathIcon className="size-6 text-text animate-spin" />
+              ) : (
+                <>
+                  <span>خروج</span>
+                  <ArrowRightStartOnRectangleIcon className="size-5" />
+                </>
+              )}
             </li>
           </ul>
         </div>
