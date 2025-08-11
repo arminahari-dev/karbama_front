@@ -81,10 +81,10 @@ const Profile: React.FC = () => {
 
   return (
     <>
-      <div className="flex flex-col gap-6 whitespace-nowrap">
+      <div className="flex flex-col gap-4">
         <h1 className="font-bold text-text text-2xl">پروفایل کاربری</h1>
-        <div className="gap-4 grid grid-cols-[2fr_1fr] max-tablet:grid-cols-none max-tablet:grid-rows-[2fr_1fr] max-tablet:h-full overflow-auto">
-          <div className="flex flex-col items-start gap-4 order-1 max-tablet:order-2 bg-foreground !p-4 border border-border rounded-lg text-text">
+        <div className="gap-4 grid grid-cols-[2fr_1fr] max-tablet:grid-cols-none max-tablet:grid-rows-[1fr_1fr] max-tablet:h-full overflow-auto">
+          <div className="flex flex-col justify-center items-start gap-4 order-1 max-tablet:order-2 bg-foreground !p-4 border border-border rounded-lg h-full text-text">
             <h2 className="font-bold text-2xl">اطلاعات</h2>
             {isLoadingUser ? (
               <Skeleton width="15rem" height="2rem" />
@@ -146,7 +146,7 @@ const Profile: React.FC = () => {
               </div>
             )}
           </div>
-          <div className="flex flex-col justify-center items-center gap-4 order-2 max-tablet:order-1 bg-foreground !p-4 border border-border rounded-lg text-text">
+          <div className="flex flex-col justify-center items-center gap-4 order-2 max-tablet:order-1 bg-foreground !p-4 border border-border rounded-lg h-full text-text">
             {isLoadingUser ? (
               <Skeleton width="13rem" height="2rem" />
             ) : (
