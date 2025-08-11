@@ -47,6 +47,10 @@ const Profile: React.FC = () => {
   const handleSubmit = () => {
     switch (activeModal) {
       case "biography":
+        if (biographyValue === "" || biographyValue.length < 30) {
+          toast.error("بایوگرافی نمی تواند خالی یا کمتر از 30 کاراکتر باشد");
+          return;
+        }
         updateUserBiography({ biography: biographyValue });
         break;
 
@@ -80,27 +84,31 @@ const Profile: React.FC = () => {
       <div className="flex flex-col gap-6 whitespace-nowrap">
         <h1 className="font-bold text-text text-2xl">پروفایل کاربری</h1>
         <div className="gap-4 grid grid-cols-[2fr_1fr] max-tablet:grid-cols-none max-tablet:grid-rows-[2fr_1fr] max-tablet:h-full overflow-auto">
-          <div className="flex flex-col items-start gap-4 order-1 max-tablet:order-2 !p-4 border border-border rounded-lg text-text">
+          <div className="flex flex-col items-start gap-4 order-1 max-tablet:order-2 bg-foreground !p-4 border border-border rounded-lg text-text">
             <h2 className="font-bold text-2xl">اطلاعات</h2>
             {isLoadingUser ? (
               <Skeleton width="15rem" height="2rem" />
             ) : (
-              <div className="group flex items-center">
+              <div className="flex items-center">
                 <span>بایوگرافی :</span>&nbsp;
-                <span className="w-64 max-mobile:w-30 font-bold text-xl truncate">
+                <span
+                  className={`${
+                    userprofile?.biography && "w-64"
+                  }  max-mobile:w-30 font-bold text-xl truncate`}
+                >
                   {userprofile?.biography || "-"}
                 </span>
                 &nbsp;
                 <PencilIcon
                   onClick={() => setActiveModal("biography")}
-                  className="opacity-0 group-hover:opacity-100 size-4 transition-opacity duration-200 cursor-pointer"
+                  className="size-4 cursor-pointer"
                 />
               </div>
             )}
             {isLoadingUser ? (
               <Skeleton width="13rem" height="2rem" />
             ) : (
-              <div className="group flex items-center">
+              <div className="flex items-center">
                 <span>موبایل :</span>&nbsp;
                 <span className="font-bold text-xl">
                   {userprofile?.phoneNumber}
@@ -108,14 +116,14 @@ const Profile: React.FC = () => {
                 &nbsp;
                 <PencilIcon
                   onClick={() => setActiveModal("phoneNumber")}
-                  className="opacity-0 group-hover:opacity-100 size-4 transition-opacity duration-200 cursor-pointer"
+                  className="size-4 cursor-pointer"
                 />
               </div>
             )}
             {isLoadingUser ? (
               <Skeleton width="11rem" height="2rem" />
             ) : (
-              <div className="group flex items-center">
+              <div className="flex items-center">
                 <span>ایمیل :</span>&nbsp;
                 <span className="w-max max-mobile-m:w-40 font-bold text-xl truncate">
                   {userprofile?.email}
@@ -123,7 +131,7 @@ const Profile: React.FC = () => {
                 &nbsp;
                 <PencilIcon
                   onClick={() => setActiveModal("email")}
-                  className="opacity-0 group-hover:opacity-100 size-4 transition-opacity duration-200 cursor-pointer"
+                  className="size-4 cursor-pointer"
                 />
               </div>
             )}
@@ -138,15 +146,15 @@ const Profile: React.FC = () => {
               </div>
             )}
           </div>
-          <div className="flex flex-col justify-center items-center gap-4 order-2 max-tablet:order-1 border border-border rounded-lg text-text">
+          <div className="flex flex-col justify-center items-center gap-4 order-2 max-tablet:order-1 bg-foreground !p-4 border border-border rounded-lg text-text">
             {isLoadingUser ? (
-              <Skeleton width="15rem" height="2rem" />
+              <Skeleton width="13rem" height="2rem" />
             ) : (
               <h2 className="font-bold text-xl">{userprofile?.name}</h2>
             )}
 
             {isLoadingUser ? (
-              <Skeleton width="13rem" height="2rem" />
+              <Skeleton width="11rem" height="2rem" />
             ) : (
               <span className="flex items-center text-xl">
                 {userprofile?.status === 2 && "کابر تایید شده"}
