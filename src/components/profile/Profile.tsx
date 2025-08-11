@@ -157,9 +157,9 @@ const Profile: React.FC = () => {
               <Skeleton width="11rem" height="2rem" />
             ) : (
               <span className="flex items-center text-xl">
-                {userprofile?.status === 2 && "کابر تایید شده"}
-                &nbsp;
                 <CheckBadgeIcon className="size-5" />
+                &nbsp;
+                {userprofile?.status === 2 && "کابر تایید شده"}
               </span>
             )}
 
