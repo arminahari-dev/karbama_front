@@ -246,31 +246,46 @@ const Profile: React.FC = () => {
                   classname="rounded-full"
                 />
               ) : (
-                <div className="relative">
+                <div
+                  className="relative cursor-pointer"
+                  onClick={() => fileInputRef.current?.click()}
+                >
                   <input
                     ref={fileInputRef}
                     type="file"
                     accept="image/*"
                     className="hidden"
                     id="profile-pic-upload"
-                    onChange={(e) => {
+                    onChange={async (e) => {
                       const file = e.target.files?.[0];
-                      if (file) {
-                        const picture = new FormData();
-                        picture.append("avatar", file);
-                        updateUserProfilePicture(picture);
+                      if (!file) return;
+
+                      if (!file.type.startsWith("image/")) {
+                        toast.error("فقط فایل‌های تصویری مجاز هستند");
+                        return;
                       }
-                      if (fileInputRef.current) {
-                        fileInputRef.current.value = "";
+
+                      if (file.size > 2 * 1024 * 1024) {
+                        toast.error("حجم فایل باید کمتر از 2 مگابایت باشد");
+                        return;
                       }
+
+                      const picture = new FormData();
+                      picture.append("avatar", file);
+
+                      await updateUserProfilePicture(picture);
+
+                      if (fileInputRef.current) fileInputRef.current.value = "";
                     }}
                   />
                   <label
                     htmlFor="profile-pic-upload"
                     className="top-19 right-19 absolute bg-foreground !p-2 border border-border rounded-full cursor-pointer"
+                    onClick={(e) => e.stopPropagation()}
                   >
                     <PencilIcon className="size-5 text-text" />
                   </label>
+
                   {userprofile?.avatarUrl ? (
                     <Image
                       className="border border-border rounded-full size-28"
