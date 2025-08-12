@@ -8,6 +8,7 @@ import DateFormater from "@/utils/DateFormater";
 import {
   ArrowUpOnSquareStackIcon,
   CheckBadgeIcon,
+  PaperClipIcon,
   PencilIcon,
   UserCircleIcon,
 } from "@heroicons/react/24/solid";
@@ -288,31 +289,53 @@ const Profile: React.FC = () => {
               )}
             </div>
           </div>
-          <div
-            onClick={() => resumeInputRef.current?.click()}
-            onDragOver={handleDragOver}
-            onDragLeave={handleDragLeave}
-            onDrop={handleDrop}
-            className={`flex flex-col justify-center items-center gap-4 bg-foreground/25 !p-4 border-3 border-border border-dashed rounded-lg text-text text-center cursor-pointer ${
-              isDragging && "!bg-muted !border-text"
-            }`}
-          >
-            <ArrowUpOnSquareStackIcon className="size-8" />
-            <h1 className="font-bold text-text text-xl">
-              فایل رزومه‌تان را اینجا بکشید و رها کنید
-            </h1>
-            <span className="font-medium text-text text-base">
-              یا برای انتخاب فایل کلیک کنید (فرمت PDF)
-            </span>
-            <input
-              type="file"
-              accept="application/pdf"
-              ref={resumeInputRef}
-              onChange={handleResumeChange}
-              className="hidden"
-              disabled={resumeUploading}
-            />
-          </div>
+          {isLoadingUser ? (
+            <div className="bg-foreground !p-4">
+              <Skeleton width="%" height="4rem" classname="max-tablet:!h-40" />
+            </div>
+          ) : userprofile?.resume ? (
+            <div className="flex max-tablet:flex-col justify-between items-center gap-4 bg-foreground !p-4 border border-border rounded-lg h-full text-text text-center">
+              <PaperClipIcon className="size-8" />
+              <h1 className="font-bold text-xl">رزومه شما آپلود شده است</h1>
+              <button onClick={() => resumeInputRef.current?.click()}>
+                آپلود مجدد رزومه
+              </button>
+              <input
+                type="file"
+                accept="application/pdf"
+                ref={resumeInputRef}
+                onChange={handleResumeChange}
+                className="hidden"
+                disabled={resumeUploading}
+              />
+            </div>
+          ) : (
+            <div
+              onClick={() => resumeInputRef.current?.click()}
+              onDragOver={handleDragOver}
+              onDragLeave={handleDragLeave}
+              onDrop={handleDrop}
+              className={`flex flex-col justify-center items-center gap-4 bg-foreground/25 !p-4 border-3 border-border border-dashed rounded-lg text-text text-center cursor-pointer ${
+                isDragging && "!bg-muted !border-text"
+              }`}
+            >
+              <ArrowUpOnSquareStackIcon className="size-8" />
+              <h1 className="font-bold text-text text-xl">
+                فایل رزومه‌تان را اینجا بکشید و رها کنید
+              </h1>
+              <span className="font-medium text-text text-base">
+                یا برای انتخاب فایل کلیک کنید (فرمت PDF)
+              </span>
+              <input
+                type="file"
+                accept="application/pdf"
+                ref={resumeInputRef}
+                onChange={handleResumeChange}
+                className="hidden"
+                disabled={resumeUploading}
+              />
+            </div>
+          )}
         </div>
       </div>
 
