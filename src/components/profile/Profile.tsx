@@ -131,7 +131,6 @@ const Profile: React.FC = () => {
     const file = e.dataTransfer.files?.[0];
     if (!file) return;
 
-    // اعتبارسنجی فایل (دقیقا مثل بالا)
     if (file.type !== "application/pdf") {
       toast.error("فقط فایل PDF مجاز است");
       return;
@@ -142,7 +141,6 @@ const Profile: React.FC = () => {
       return;
     }
 
-    // آپلود
     const formData = new FormData();
     formData.append("resume", file);
 
@@ -160,180 +158,318 @@ const Profile: React.FC = () => {
       <div className="flex flex-col gap-4">
         <h1 className="font-bold text-text text-2xl">پروفایل کاربری</h1>
         <div className="flex flex-col gap-4 overflow-auto">
-          <div className="gap-4 grid grid-cols-[2fr_1fr] max-tablet:grid-cols-none max-tablet:grid-rows-[1fr_1fr] max-tablet:h-full">
-            <div className="flex flex-col justify-center items-start gap-4 order-1 max-tablet:order-2 bg-foreground !p-4 border border-border rounded-lg h-full text-text">
-              <h2 className="font-bold text-2xl">اطلاعات</h2>
-              {isLoadingUser ? (
-                <Skeleton width="15rem" height="2rem" />
-              ) : (
-                <div className="flex items-center">
-                  <span>بایوگرافی :</span>&nbsp;
-                  <span
-                    className={`${
-                      userprofile?.biography && "w-64"
-                    }  max-mobile:w-30 font-bold text-xl truncate`}
-                  >
-                    {userprofile?.biography || "-"}
-                  </span>
-                  &nbsp;
-                  <PencilIcon
-                    onClick={() => setActiveModal("biography")}
-                    className="size-4 cursor-pointer"
-                  />
+          {userprofile?.role === "FREELANCER" ? (
+            <>
+              <div className="gap-4 grid grid-cols-[2fr_1fr] max-tablet:grid-cols-none max-tablet:grid-rows-[1fr_1fr] max-tablet:h-full">
+                <div className="flex flex-col justify-center items-start gap-4 order-1 max-tablet:order-2 bg-foreground !p-4 border border-border rounded-lg h-full text-text">
+                  <h2 className="font-bold text-2xl">اطلاعات</h2>
+                  {isLoadingUser ? (
+                    <Skeleton width="15rem" height="2rem" />
+                  ) : (
+                    <div className="flex items-center">
+                      <span>بایوگرافی :</span>&nbsp;
+                      <span
+                        className={`${
+                          userprofile?.biography && "w-64"
+                        }  max-mobile:w-30 font-bold text-xl truncate`}
+                      >
+                        {userprofile?.biography || "-"}
+                      </span>
+                      &nbsp;
+                      <PencilIcon
+                        onClick={() => setActiveModal("biography")}
+                        className="size-4 cursor-pointer"
+                      />
+                    </div>
+                  )}
+                  {isLoadingUser ? (
+                    <Skeleton width="13rem" height="2rem" />
+                  ) : (
+                    <div className="flex items-center">
+                      <span>موبایل :</span>&nbsp;
+                      <span className="font-bold text-xl">
+                        {userprofile?.phoneNumber}
+                      </span>
+                      &nbsp;
+                      <PencilIcon
+                        onClick={() => setActiveModal("phoneNumber")}
+                        className="size-4 cursor-pointer"
+                      />
+                    </div>
+                  )}
+                  {isLoadingUser ? (
+                    <Skeleton width="11rem" height="2rem" />
+                  ) : (
+                    <div className="flex items-center">
+                      <span>ایمیل :</span>&nbsp;
+                      <span className="w-max max-mobile-m:w-40 font-bold text-xl truncate">
+                        {userprofile?.email}
+                      </span>
+                      &nbsp;
+                      <PencilIcon
+                        onClick={() => setActiveModal("email")}
+                        className="size-4 cursor-pointer"
+                      />
+                    </div>
+                  )}
+                  {isLoadingUser ? (
+                    <Skeleton width="9rem" height="2rem" />
+                  ) : (
+                    <div className="flex items-center">
+                      <span>تاریخ عضویت :</span>&nbsp;
+                      <span className="font-bold text-xl">
+                        {DateFormater(userprofile?.createdAt)}
+                      </span>
+                    </div>
+                  )}
                 </div>
-              )}
-              {isLoadingUser ? (
-                <Skeleton width="13rem" height="2rem" />
-              ) : (
-                <div className="flex items-center">
-                  <span>موبایل :</span>&nbsp;
-                  <span className="font-bold text-xl">
-                    {userprofile?.phoneNumber}
-                  </span>
-                  &nbsp;
-                  <PencilIcon
-                    onClick={() => setActiveModal("phoneNumber")}
-                    className="size-4 cursor-pointer"
-                  />
-                </div>
-              )}
-              {isLoadingUser ? (
-                <Skeleton width="11rem" height="2rem" />
-              ) : (
-                <div className="flex items-center">
-                  <span>ایمیل :</span>&nbsp;
-                  <span className="w-max max-mobile-m:w-40 font-bold text-xl truncate">
-                    {userprofile?.email}
-                  </span>
-                  &nbsp;
-                  <PencilIcon
-                    onClick={() => setActiveModal("email")}
-                    className="size-4 cursor-pointer"
-                  />
-                </div>
-              )}
-              {isLoadingUser ? (
-                <Skeleton width="9rem" height="2rem" />
-              ) : (
-                <div className="flex items-center">
-                  <span>تاریخ عضویت :</span>&nbsp;
-                  <span className="font-bold text-xl">
-                    {DateFormater(userprofile?.createdAt)}
-                  </span>
-                </div>
-              )}
-            </div>
-            <div className="flex flex-col justify-center items-center gap-4 order-2 max-tablet:order-1 bg-foreground !p-4 border border-border rounded-lg h-full text-text">
-              {isLoadingUser ? (
-                <Skeleton width="13rem" height="2rem" />
-              ) : (
-                <h2 className="font-bold text-xl">{userprofile?.name}</h2>
-              )}
+                <div className="flex flex-col justify-center items-center gap-4 order-2 max-tablet:order-1 bg-foreground !p-4 border border-border rounded-lg h-full text-text">
+                  {isLoadingUser ? (
+                    <Skeleton width="13rem" height="2rem" />
+                  ) : (
+                    <h2 className="font-bold text-xl">{userprofile?.name}</h2>
+                  )}
 
-              {isLoadingUser ? (
-                <Skeleton width="11rem" height="2rem" />
-              ) : (
-                <span className="flex items-center text-xl">
-                  <CheckBadgeIcon className="size-5" />
-                  &nbsp;
-                  {userprofile?.status === 2 && "کابر تایید شده"}
-                </span>
-              )}
+                  {isLoadingUser ? (
+                    <Skeleton width="11rem" height="2rem" />
+                  ) : (
+                    <span className="flex items-center text-xl">
+                      <CheckBadgeIcon className="size-5" />
+                      &nbsp;
+                      {userprofile?.status === 2 && "کابر تایید شده"}
+                    </span>
+                  )}
 
-              {isLoadingUser ? (
-                <Skeleton
-                  width="7.5rem"
-                  height="7.5rem"
-                  classname="rounded-full"
-                />
-              ) : (
-                <div
-                  className="relative cursor-pointer"
-                  onClick={() => fileInputRef.current?.click()}
-                >
-                  <input
-                    ref={fileInputRef}
-                    type="file"
-                    className="hidden"
-                    onChange={(e) => {
-                      const file = e.target.files?.[0];
-                      if (file) {
-                        if (!file.type.startsWith("image/")) {
-                          toast.error("لطفاً فقط فایل عکس انتخاب کنید.");
-                          return;
-                        }
-                        const picture = new FormData();
-                        picture.append("avatar", file);
-                        updateUserProfilePicture(picture);
-                      }
-                      if (fileInputRef.current) {
-                        fileInputRef.current.value = "";
-                      }
-                    }}
-                  />
-                  {userprofile?.avatarUrl ? (
-                    <Image
-                      className="border border-border rounded-full size-28"
-                      src={userprofile.avatarUrl}
-                      alt="profile pic"
-                      width={120}
-                      height={120}
+                  {isLoadingUser ? (
+                    <Skeleton
+                      width="7.5rem"
+                      height="7.5rem"
+                      classname="rounded-full"
                     />
                   ) : (
-                    <UserCircleIcon className="border border-border rounded-full size-28" />
+                    <div
+                      className="relative cursor-pointer"
+                      onClick={() => fileInputRef.current?.click()}
+                    >
+                      <input
+                        ref={fileInputRef}
+                        type="file"
+                        className="hidden"
+                        onChange={(e) => {
+                          const file = e.target.files?.[0];
+                          if (file) {
+                            if (!file.type.startsWith("image/")) {
+                              toast.error("لطفاً فقط فایل عکس انتخاب کنید.");
+                              return;
+                            }
+                            const picture = new FormData();
+                            picture.append("avatar", file);
+                            updateUserProfilePicture(picture);
+                          }
+                          if (fileInputRef.current) {
+                            fileInputRef.current.value = "";
+                          }
+                        }}
+                      />
+                      {userprofile?.avatarUrl ? (
+                        <Image
+                          className="border border-border rounded-full size-28"
+                          src={userprofile.avatarUrl}
+                          alt="profile pic"
+                          width={120}
+                          height={120}
+                        />
+                      ) : (
+                        <UserCircleIcon className="border border-border rounded-full size-28" />
+                      )}
+                      <div className="top-19 right-19 absolute bg-foreground !p-2 border border-border rounded-full">
+                        <PencilIcon className="size-5 text-text" />
+                      </div>
+                    </div>
                   )}
-                  <div className="top-19 right-19 absolute bg-foreground !p-2 border border-border rounded-full">
-                    <PencilIcon className="size-5 text-text" />
-                  </div>
+                </div>
+              </div>
+              {isLoadingUser ? (
+                <div className="bg-foreground !p-4">
+                  <Skeleton
+                    width="%"
+                    height="4rem"
+                    classname="max-tablet:!h-40"
+                  />
+                </div>
+              ) : userprofile?.resume ? (
+                <div className="flex max-tablet:flex-col justify-between items-center gap-4 bg-foreground !p-4 border border-border rounded-lg h-full text-text text-center">
+                  <PaperClipIcon className="size-8" />
+                  <h1 className="font-bold text-xl">رزومه شما آپلود شده است</h1>
+                  <button onClick={() => resumeInputRef.current?.click()}>
+                    آپلود مجدد رزومه
+                  </button>
+                  <input
+                    type="file"
+                    accept="application/pdf"
+                    ref={resumeInputRef}
+                    onChange={handleResumeChange}
+                    className="hidden"
+                    disabled={resumeUploading}
+                  />
+                </div>
+              ) : (
+                <div
+                  onClick={() => resumeInputRef.current?.click()}
+                  onDragOver={handleDragOver}
+                  onDragLeave={handleDragLeave}
+                  onDrop={handleDrop}
+                  className={`flex flex-col justify-center items-center gap-4 bg-foreground/25 !p-4 border-3 border-border border-dashed rounded-lg text-text text-center cursor-pointer ${
+                    isDragging && "!bg-muted !border-text"
+                  }`}
+                >
+                  <ArrowUpOnSquareStackIcon className="size-8" />
+                  <h1 className="font-bold text-text text-xl">
+                    فایل رزومه‌تان را اینجا بکشید و رها کنید
+                  </h1>
+                  <span className="font-medium text-text text-base">
+                    یا برای انتخاب فایل کلیک کنید (فرمت PDF)
+                  </span>
+                  <input
+                    type="file"
+                    accept="application/pdf"
+                    ref={resumeInputRef}
+                    onChange={handleResumeChange}
+                    className="hidden"
+                    disabled={resumeUploading}
+                  />
                 </div>
               )}
-            </div>
-          </div>
-          {isLoadingUser ? (
-            <div className="bg-foreground !p-4">
-              <Skeleton width="%" height="4rem" classname="max-tablet:!h-40" />
-            </div>
-          ) : userprofile?.resume ? (
-            <div className="flex max-tablet:flex-col justify-between items-center gap-4 bg-foreground !p-4 border border-border rounded-lg h-full text-text text-center">
-              <PaperClipIcon className="size-8" />
-              <h1 className="font-bold text-xl">رزومه شما آپلود شده است</h1>
-              <button onClick={() => resumeInputRef.current?.click()}>
-                آپلود مجدد رزومه
-              </button>
-              <input
-                type="file"
-                accept="application/pdf"
-                ref={resumeInputRef}
-                onChange={handleResumeChange}
-                className="hidden"
-                disabled={resumeUploading}
-              />
-            </div>
+            </>
           ) : (
-            <div
-              onClick={() => resumeInputRef.current?.click()}
-              onDragOver={handleDragOver}
-              onDragLeave={handleDragLeave}
-              onDrop={handleDrop}
-              className={`flex flex-col justify-center items-center gap-4 bg-foreground/25 !p-4 border-3 border-border border-dashed rounded-lg text-text text-center cursor-pointer ${
-                isDragging && "!bg-muted !border-text"
-              }`}
-            >
-              <ArrowUpOnSquareStackIcon className="size-8" />
-              <h1 className="font-bold text-text text-xl">
-                فایل رزومه‌تان را اینجا بکشید و رها کنید
-              </h1>
-              <span className="font-medium text-text text-base">
-                یا برای انتخاب فایل کلیک کنید (فرمت PDF)
-              </span>
-              <input
-                type="file"
-                accept="application/pdf"
-                ref={resumeInputRef}
-                onChange={handleResumeChange}
-                className="hidden"
-                disabled={resumeUploading}
-              />
+            <div className="gap-4 grid grid-cols-[2fr_1fr] max-tablet:grid-cols-none max-tablet:grid-rows-[1fr_1fr] max-tablet:h-full">
+              <div className="flex flex-col justify-center items-start gap-4 order-1 max-tablet:order-2 bg-foreground !p-4 border border-border rounded-lg h-full text-text">
+                <h2 className="font-bold text-2xl">اطلاعات</h2>
+                {isLoadingUser ? (
+                  <Skeleton width="15rem" height="2rem" />
+                ) : (
+                  <div className="flex items-center">
+                    <span>بایوگرافی :</span>&nbsp;
+                    <span
+                      className={`${
+                        userprofile?.biography && "w-64"
+                      }  max-mobile:w-30 font-bold text-xl truncate`}
+                    >
+                      {userprofile?.biography || "-"}
+                    </span>
+                    &nbsp;
+                    <PencilIcon
+                      onClick={() => setActiveModal("biography")}
+                      className="size-4 cursor-pointer"
+                    />
+                  </div>
+                )}
+                {isLoadingUser ? (
+                  <Skeleton width="13rem" height="2rem" />
+                ) : (
+                  <div className="flex items-center">
+                    <span>موبایل :</span>&nbsp;
+                    <span className="font-bold text-xl">
+                      {userprofile?.phoneNumber}
+                    </span>
+                    &nbsp;
+                    <PencilIcon
+                      onClick={() => setActiveModal("phoneNumber")}
+                      className="size-4 cursor-pointer"
+                    />
+                  </div>
+                )}
+                {isLoadingUser ? (
+                  <Skeleton width="11rem" height="2rem" />
+                ) : (
+                  <div className="flex items-center">
+                    <span>ایمیل :</span>&nbsp;
+                    <span className="w-max max-mobile-m:w-40 font-bold text-xl truncate">
+                      {userprofile?.email}
+                    </span>
+                    &nbsp;
+                    <PencilIcon
+                      onClick={() => setActiveModal("email")}
+                      className="size-4 cursor-pointer"
+                    />
+                  </div>
+                )}
+                {isLoadingUser ? (
+                  <Skeleton width="9rem" height="2rem" />
+                ) : (
+                  <div className="flex items-center">
+                    <span>تاریخ عضویت :</span>&nbsp;
+                    <span className="font-bold text-xl">
+                      {DateFormater(userprofile?.createdAt)}
+                    </span>
+                  </div>
+                )}
+              </div>
+              <div className="flex flex-col justify-center items-center gap-4 order-2 max-tablet:order-1 bg-foreground !p-4 border border-border rounded-lg h-full text-text">
+                {isLoadingUser ? (
+                  <Skeleton width="13rem" height="2rem" />
+                ) : (
+                  <h2 className="font-bold text-xl">{userprofile?.name}</h2>
+                )}
+
+                {isLoadingUser ? (
+                  <Skeleton width="11rem" height="2rem" />
+                ) : (
+                  <span className="flex items-center text-xl">
+                    <CheckBadgeIcon className="size-5" />
+                    &nbsp;
+                    {userprofile?.status === 2 && "کابر تایید شده"}
+                  </span>
+                )}
+
+                {isLoadingUser ? (
+                  <Skeleton
+                    width="7.5rem"
+                    height="7.5rem"
+                    classname="rounded-full"
+                  />
+                ) : (
+                  <div
+                    className="relative cursor-pointer"
+                    onClick={() => fileInputRef.current?.click()}
+                  >
+                    <input
+                      ref={fileInputRef}
+                      type="file"
+                      className="hidden"
+                      onChange={(e) => {
+                        const file = e.target.files?.[0];
+                        if (file) {
+                          if (!file.type.startsWith("image/")) {
+                            toast.error("لطفاً فقط فایل عکس انتخاب کنید.");
+                            return;
+                          }
+                          const picture = new FormData();
+                          picture.append("avatar", file);
+                          updateUserProfilePicture(picture);
+                        }
+                        if (fileInputRef.current) {
+                          fileInputRef.current.value = "";
+                        }
+                      }}
+                    />
+                    {userprofile?.avatarUrl ? (
+                      <Image
+                        className="border border-border rounded-full size-28"
+                        src={userprofile.avatarUrl}
+                        alt="profile pic"
+                        width={120}
+                        height={120}
+                      />
+                    ) : (
+                      <UserCircleIcon className="border border-border rounded-full size-28" />
+                    )}
+                    <div className="top-19 right-19 absolute bg-foreground !p-2 border border-border rounded-full">
+                      <PencilIcon className="size-5 text-text" />
+                    </div>
+                  </div>
+                )}
+              </div>
             </div>
           )}
         </div>
