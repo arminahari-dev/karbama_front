@@ -253,11 +253,14 @@ const Profile: React.FC = () => {
                   <input
                     ref={fileInputRef}
                     type="file"
-                    accept="image/*"
                     className="hidden"
                     onChange={(e) => {
                       const file = e.target.files?.[0];
                       if (file) {
+                        if (!file.type.startsWith("image/")) {
+                          toast.error("لطفاً فقط فایل عکس انتخاب کنید.");
+                          return;
+                        }
                         const picture = new FormData();
                         picture.append("avatar", file);
                         updateUserProfilePicture(picture);
