@@ -56,6 +56,15 @@ export const UpdateUserEMail = async (email: string) => {
   return res?.message;
 };
 
+export const UploadUserResume = async (file: FormData) => {
+  const res = await authFetch("/upload/resume", {
+    method: "POST",
+    body: file,
+  });
+
+  return res?.message;
+};
+
 export const UserLogOut = async () => {
   await authFetch("/user/logout", {
     method: "POST",
