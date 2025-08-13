@@ -20,16 +20,13 @@ export default function Home() {
         <button onClick={() => router.push("/auth")}>ورود / ثبت نام</button>
       </nav>
 
-      <section className="flex flex-col justify-center items-center gap-4 !px-6 !py-4 text-center">
+      <section className="flex flex-col justify-center items-center gap-4 bg-[url(/images/Texture.jpg)] bg-cover !px-6 !py-4 text-center">
         <h1 className="font-extrabold text-primary text-3xl">
           به پلتفرم کارباما خوش آمدید
         </h1>
-        <p className="font-semibold text-md text-secondary">
-          پلتفرمی امن و سریع برای همکاری حرفه‌ای بین فریلنسرها و کارفرماها
-        </p>
-        <p className="font-semibold text-md text-secondary">
-          مسیر خود را به سمت پروژه‌های حرفه‌ای یا یافتن استعدادهای مناسب آغاز
-          کنید.
+        <p className="font-semibold text-gray-600 text-lg">
+          پلتفرمی امن و سریع برای همکاری حرفه‌ای بین فریلنسرها و کارفرماها. مسیر
+          خود را به سمت پروژه‌های حرفه‌ای یا یافتن استعدادهای مناسب آغاز کنید.
         </p>
         <button onClick={() => router.push("/auth")}>همین حالا شروع کن</button>
       </section>
