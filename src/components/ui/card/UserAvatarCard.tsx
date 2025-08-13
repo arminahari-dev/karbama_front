@@ -64,7 +64,7 @@ export default function UserAvatarCard({
           ) : (
             <UserCircleIcon className="border border-border rounded-full size-28" />
           )}
-          <div className="top-19 right-19 absolute bg-foreground p-2 border border-border rounded-full">
+          <div className="top-19 right-19 absolute bg-foreground !p-2 border border-border rounded-full">
             <PencilIcon className="size-5 text-text" />
           </div>
         </div>
