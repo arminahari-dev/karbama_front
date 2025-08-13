@@ -33,7 +33,11 @@ const renderField = ({
   ) : (
     <div className="flex items-center">
       <span>{label} :</span>&nbsp;
-      <span className={`font-bold text-xl truncate ${extraClass}`}>
+      <span
+        className={`${
+          label === "بایوگرافی" && "w-64  max-mobile:w-30"
+        }  font-bold text-xl truncate ${extraClass}`}
+      >
         {value}
       </span>
       &nbsp;
