@@ -9,6 +9,8 @@ import UserAvatarCard from "@/components/ui/card/UserAvatarCard";
 import ResumeUploader from "@/components/resume/ResumeUploader";
 import EditModal from "../ui/modal/EditModal ";
 import Skeleton from "@/components/ui/skeleton/Skeleton ";
+import { InformationCircleIcon } from "@heroicons/react/24/solid";
+import { useNotification } from "@/contexts/NotificationContext";
 
 type ModalType = "biography" | "phoneNumber" | "email" | null;
 
@@ -20,6 +22,7 @@ const Profile: React.FC = () => {
   const [resumeUploading, setResumeUploading] = useState(false);
 
   const { userprofile, isLoadingUser } = useGetUserProfile();
+  const { setNotification } = useNotification();
 
   const {
     updateUserEmail,
@@ -35,7 +38,19 @@ const Profile: React.FC = () => {
       setPhoneNumberValue(userprofile.phoneNumber || "");
       setEmailValue(userprofile.email || "");
     }
-  }, [userprofile]);
+    if (userprofile?.role === "FREELANCER" && !userprofile?.resume) {
+      const banner = (
+        <div className="flex justify-center items-center gap-2 bg-[#1e2a49] !p-4">
+          <InformationCircleIcon className="size-6 text-text" />
+          <span className="text-text">همین حالا رزومه خود را اپلود کنید</span> 
+        </div>
+      );
+      setNotification(banner);
+    }
+    return () => {
+      setNotification(null);
+    };
+  }, [userprofile, setNotification]);
 
   const handleSubmit = () => {
     switch (activeModal) {

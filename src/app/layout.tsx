@@ -4,6 +4,7 @@ import "./globals.css";
 import { ReactNode } from "react";
 import QueryProvider from "@/components/services/queryprovider/QueryProvider";
 import { Toaster } from "react-hot-toast";
+import { NotificationProvider } from "@/contexts/NotificationContext";
 
 const vazirmatn = Vazirmatn({
   subsets: ["latin"],
@@ -32,8 +33,10 @@ export default function RootLayout({
       className={`flex justify-center items-center ${vazirmatn.className}`}
     >
       <body>
-        <Toaster />
-        <QueryProvider>{children}</QueryProvider>
+        <NotificationProvider>
+          <Toaster />
+          <QueryProvider>{children}</QueryProvider>
+        </NotificationProvider>
       </body>
     </html>
   );
