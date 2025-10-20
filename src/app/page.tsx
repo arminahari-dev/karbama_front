@@ -12,7 +12,7 @@ export default function Home() {
   const router = useRouter();
 
   return (
-    <div className="bg-background">
+    <div className="flex flex-col justify-between h-screen">
       <nav className="flex justify-between items-center bg-foreground !px-6 !py-4">
         <div>
           <Image alt="logo" src={LOGO} width={40} height={40} />
@@ -20,7 +20,7 @@ export default function Home() {
         <button onClick={() => router.push("/auth")}>ورود / ثبت نام</button>
       </nav>
 
-      <section className="flex flex-col justify-center items-center gap-4 bg-[url(/images/Texture.jpg)] bg-cover !px-6 !py-4 text-center">
+      <section className="flex flex-col justify-center items-center gap-4 bg-[url(/images/Texture.jpg)] bg-cover !px-6 !py-4 h-full text-center">
         <h1 className="font-extrabold text-primary text-3xl">
           به پلتفرم کارباما خوش آمدید
         </h1>
@@ -32,7 +32,7 @@ export default function Home() {
       </section>
 
       <section className="flex flex-col gap-4 bg-foreground !px-6 !py-4">
-        <h2 className="font-semibold text-text text-3xl text-center">
+        <h2 className="!py-4 font-semibold text-text text-3xl text-center">
           مراحل ثبت‌ نام
         </h2>
         <div className="gap-4 grid min-tablet:grid-cols-[1fr_30px_1fr_30px_1fr] max-tablet:grid-rows-[1fr_30px_1fr_30px_1fr] h-full">
@@ -75,8 +75,8 @@ export default function Home() {
         </div>
       </section>
 
-      <footer className="bg-foreground !px-6 !py-4 border-t border-border text-secondary text-sm text-center">
-        <div className="flex flex-col justify-between items-center gap-4">
+      <footer className="bg-foreground !px-6 !py-4 border-t border-border text-secondary text-sm tablet:text-base text-center">
+        <div className="flex flex-col justify-between items-center gap-4 !py-4">
           <div className="flex justify-center items-center gap-4">
             <Image alt="logo" src={LOGO} width={40} height={40} />
             <span className="font-semibold text-text">کارباما</span>
