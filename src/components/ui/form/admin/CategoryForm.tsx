@@ -1,21 +1,21 @@
 "use client";
 
-import { useForm } from "react-hook-form";
 import { usePathname, useRouter } from "next/navigation";
+import { useEffect } from "react";
+import { useForm } from "react-hook-form";
 import useGetCategoryById from "@/hooks/category/useGetCategoryById";
 import Skeleton from "../../skeleton/Skeleton ";
 import useAddNewCategory from "@/hooks/category/useAddNewCategory";
 import useEditCategory from "@/hooks/category/useEditCategory";
-import { useEffect } from "react";
 import useGetAllCategories from "@/hooks/category/useGetAllCategories";
 
-type Inputs = {
+interface Inputs {
   title: string;
   englishTitle: string;
   description: string;
   type: string;
   parent?: string;
-};
+}
 
 interface category {
   _id: string;

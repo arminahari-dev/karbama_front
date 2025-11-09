@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useNotification } from "@/contexts/NotificationContext";
 import toast from "react-hot-toast";
 import useGetUserProfile from "@/hooks/user/useGetUserProfile";
 import useUserProfileMutations from "@/hooks/user/useUserProfileMutations";
@@ -10,7 +11,6 @@ import ResumeUploader from "@/components/resume/ResumeUploader";
 import EditModal from "../ui/modal/EditModal ";
 import Skeleton from "@/components/ui/skeleton/Skeleton ";
 import { InformationCircleIcon } from "@heroicons/react/24/solid";
-import { useNotification } from "@/contexts/NotificationContext";
 
 type ModalType = "biography" | "phoneNumber" | "email" | null;
 

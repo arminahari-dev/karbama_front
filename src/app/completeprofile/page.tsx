@@ -1,7 +1,8 @@
 "use client";
-import useCompleteProfile from "@/hooks/auth/useCompleteProfile";
+
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
+import useCompleteProfile from "@/hooks/auth/useCompleteProfile";
 
 const CompleteProfile: React.FC = () => {
   const {
@@ -95,7 +96,7 @@ const CompleteProfile: React.FC = () => {
             <h1 className="font-bold text-text">نقش خود را انتخاب کنید</h1>
             <div className="flex gap-4">
               <input
-                className="peer checked:bg-primary border checked:border-transparent border-border rounded-full focus:outline-none w-4 h-4 appearance-none cursor-pointer"
+                className="peer checked:bg-primary border border-border checked:border-transparent rounded-full focus:outline-none w-4 h-4 appearance-none cursor-pointer"
                 value="OWNER"
                 type="radio"
                 {...register("role")}
@@ -104,7 +105,7 @@ const CompleteProfile: React.FC = () => {
             </div>
             <div className="flex gap-4">
               <input
-                className="peer checked:bg-primary border checked:border-transparent border-border rounded-full focus:outline-none w-4 h-4 appearance-none cursor-pointer"
+                className="peer checked:bg-primary border border-border checked:border-transparent rounded-full focus:outline-none w-4 h-4 appearance-none cursor-pointer"
                 value="FREELANCER"
                 type="radio"
                 {...register("role")}
@@ -113,7 +114,7 @@ const CompleteProfile: React.FC = () => {
             </div>
             <div className="flex gap-4">
               <input
-                className="peer checked:bg-primary border checked:border-transparent border-border rounded-full focus:outline-none w-4 h-4 appearance-none cursor-pointer"
+                className="peer checked:bg-primary border border-border checked:border-transparent rounded-full focus:outline-none w-4 h-4 appearance-none cursor-pointer"
                 value="ADMIN"
                 type="radio"
                 {...register("role")}

@@ -1,8 +1,8 @@
 "use client";
 
+import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { usePathname, useRouter } from "next/navigation";
 import DatePicker from "react-multi-date-picker";
 import persian from "react-date-object/calendars/persian";
 import persian_fa from "react-date-object/locales/persian_fa";
@@ -12,12 +12,12 @@ import useGetAllCategories from "@/hooks/category/useGetAllCategories";
 import Skeleton from "../../skeleton/Skeleton ";
 import useUpdateProject from "@/hooks/project/useUpdateProject";
 
-type Inputs = {
+interface Inputs {
   title: string;
   description: string;
   category: string;
   budget: string;
-};
+}
 
 const ProjectForm: React.FC = () => {
   const pathname = usePathname();

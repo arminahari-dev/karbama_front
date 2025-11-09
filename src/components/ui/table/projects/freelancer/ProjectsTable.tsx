@@ -1,9 +1,9 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import useGetAllProjects from "@/hooks/project/useGetAllProjects";
 import DateFormater from "@/utils/DateFormater";
 import { ArrowPathIcon } from "@heroicons/react/24/solid";
-import { useRouter } from "next/navigation";
 import useGetAllProposals from "@/hooks/prposal/useGetAllProposals";
 
 interface project {

@@ -1,8 +1,8 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import image from "../../../assets/images/403.png";
-import { useRouter } from "next/navigation";
 
 const Unauthorized: React.FC = () => {
   const router = useRouter();
@@ -13,6 +13,6 @@ const Unauthorized: React.FC = () => {
       <button onClick={() => router.push("/")}>بازگشت به صفحه اصلی</button>
     </div>
   );
-}
+};
 
 export default Unauthorized;

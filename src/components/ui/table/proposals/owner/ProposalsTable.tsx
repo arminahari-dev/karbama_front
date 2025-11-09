@@ -1,10 +1,10 @@
 "use client";
 
+import { useParams } from "next/navigation";
+import { useState } from "react";
 import EditModal from "@/components/ui/modal/EditModal ";
 import useChangeFreelancerProposalStatus from "@/hooks/prposal/useChangeFreelancerProposalStatus";
 import useGetFreelancerProposalsByProject from "@/hooks/prposal/useGetFreelancerProposalsByProject";
-import { useParams } from "next/navigation";
-import { useState } from "react";
 
 interface proposal {
   _id: string;
@@ -88,7 +88,7 @@ const ProposalsTable: React.FC = () => {
           </tbody>
         </table>
       </div>
-      
+
       {openModal && (
         <EditModal
           content="وضعیت پروژه را انتخاب کنید"

@@ -1,19 +1,18 @@
 "use client";
 
-import { useForm } from "react-hook-form";
 import { usePathname, useRouter } from "next/navigation";
+import { useEffect } from "react";
+import { useForm } from "react-hook-form";
 import useGetFreelancerProposalById from "@/hooks/prposal/useGetFreelancerProposalById";
 import Skeleton from "../../skeleton/Skeleton ";
-
 import useEditFreelancerProposal from "@/hooks/prposal/useEditFreelancerProposal";
-import { useEffect } from "react";
 import useAddNewFreelancerProposal from "@/hooks/prposal/useAddnewFreelancerProposal";
 
-type Inputs = {
+interface Inputs {
   description: string;
   price: string;
   duration: string;
-};
+}
 
 const ProposalForm: React.FC = () => {
   const pathname = usePathname();

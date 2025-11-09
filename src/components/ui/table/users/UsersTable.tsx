@@ -1,9 +1,9 @@
 "use client";
 
+import React, { useState } from "react";
 import useGetAllUsers from "@/hooks/admin/useGetAllUsers";
 import DateFormater from "@/utils/DateFormater";
 import { ArrowPathIcon } from "@heroicons/react/24/solid";
-import React, { useState } from "react";
 import EditModal from "../../modal/EditModal ";
 import useVerifyUser from "@/hooks/admin/useVerifyUser";
 
@@ -19,6 +19,7 @@ interface User {
   createdAt: string;
   updatedAt: string;
 }
+
 const UsersTable: React.FC = () => {
   const [showModal, setShowModal] = useState<boolean>(false);
 
