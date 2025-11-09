@@ -1,10 +1,10 @@
 "use client";
 
-import NavBar from "@/components/ui/navbar/NavBar";
-import SideBarLinks from "@/components/ui/sidebar/link/SideBarLinks";
-import { AnimatePresence, motion } from "framer-motion";
 import { usePathname } from "next/navigation";
 import { ReactNode } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import NavBar from "@/components/ui/navbar/NavBar";
+import SideBarLinks from "@/components/ui/sidebar/link/SideBarLinks";
 
 export default function Layout({
   children,
@@ -19,7 +19,6 @@ export default function Layout({
         key={pathname}
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
-
         transition={{ duration: 0.6, ease: "easeOut" }}
       >
         <div className="grid max-tablet:grid-cols-none tablet:grid-cols-[auto_1fr] max-tablet:grid-rows-[90%_10%] w-full h-dvh">

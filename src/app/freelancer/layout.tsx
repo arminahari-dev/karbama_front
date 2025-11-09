@@ -1,12 +1,11 @@
 "use client";
 
+import { usePathname } from "next/navigation";
+import { ReactNode } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { useNotification } from "@/contexts/NotificationContext";
 import NavBar from "@/components/ui/navbar/NavBar";
 import SideBarLinks from "@/components/ui/sidebar/link/SideBarLinks";
-import { useNotification } from "@/contexts/NotificationContext";
-import { AnimatePresence, motion } from "framer-motion";
-import { usePathname } from "next/navigation";
-
-import { ReactNode } from "react";
 
 export default function Layout({
   children,
