@@ -91,9 +91,11 @@ const Profile: React.FC = () => {
       if (!file.type.startsWith("image/")) {
         return toast.error("لطفاً فقط فایل عکس انتخاب کنید.");
       }
-      if (file.size > 2 * 1024 * 1024) {
-        return toast.error("حجم فایل نباید بیشتر از 2 مگابایت باشد.");
+
+      if (file.size > 5 * 1024 * 1024) {
+        return toast.error("حجم فایل نباید بیشتر از 5 مگابایت باشد.");
       }
+      
       const picture = new FormData();
       picture.append("avatar", file);
       updateUserProfilePicture(picture);
