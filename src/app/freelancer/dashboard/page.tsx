@@ -13,12 +13,6 @@ const FreelancerDashboard: React.FC = () => {
 
   const numOfProposals = proposals?.length;
 
-  // const numOfAcceptedProposals = proposals?.reduce(
-  //   (acc: number, project: ProposalItem) =>
-  //     acc + (project?.proposals?.length || 0),
-  //   0
-  // );
-
   const numOfAcceptedProposals =
     proposals?.reduce(
       (acc: number, project: ProposalItem) =>
