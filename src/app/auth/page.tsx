@@ -3,12 +3,12 @@
 import React, { FormEvent, useEffect, useState } from "react";
 
 const SendOtpCard = React.lazy(
-  () => import("@/components/ui/card/SendOtpCard")
+  () => import("@/components/ui/card/SendOtpCard"),
 );
 import useSendOtp from "@/hooks/auth/useSendOtp";
 
 const CheckOtpCard = React.lazy(
-  () => import("@/components/ui/card/CheckOtpCard")
+  () => import("@/components/ui/card/CheckOtpCard"),
 );
 import useCheckOtp from "@/hooks/auth/useCheckOtp";
 
@@ -50,7 +50,7 @@ const Auth: React.FC = () => {
     }
 
     if (user?.isActive && user?.status === 2) {
-      router.push(`/${user?.role.toLowerCase()}/dashboard`);
+      window.location.href = `/${user?.role.toLowerCase()}/dashboard`;
     }
   };
 
