@@ -1,16 +1,19 @@
-name: Deploy Frontend
+name: Test SSH Connection
 
 on:
-  push:
-    branches:
-      - main
+  workflow_dispatch:
 
 jobs:
-  deploy:
+  test-ssh:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Deploy frontend to VPS
+      - name: Test network to SSH port
+        run: |
+          echo "Testing TCP connection..."
+          nc -vz ${{ secrets.SERVER_HOST }} ${{ secrets.SERVER_PORT }}
+
+      - name: Test SSH login
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.SERVER_HOST }}
@@ -18,21 +21,7 @@ jobs:
           key: ${{ secrets.SERVER_SSH_KEY }}
           port: ${{ secrets.SERVER_PORT }}
           script: |
-            set -e
-
-            echo "Going to frontend directory..."
-            cd /var/www/karbama/frontend
-
-            echo "Pulling latest frontend code..."
-            git pull origin main
-
-            echo "Going to compose directory..."
-            cd /var/www/karbama
-
-            echo "Rebuilding and restarting frontend service..."
-            docker compose up -d --build frontend
-
-            echo "Cleaning unused docker images..."
-            docker image prune -f
-
-            echo "Frontend deployed successfully."
+            echo "SSH connected successfully"
+            whoami
+            hostname
+            pwd
