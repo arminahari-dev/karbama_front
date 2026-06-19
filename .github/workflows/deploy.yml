@@ -4,16 +4,24 @@ on:
   push:
     branches: [ "main" ]
 
+# اضافه کردن این بخش برای اطمینان از دسترسی کامل اکشن به توکن‌ها و سکرت‌ها
+permissions:
+  contents: read
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
       - name: Deploy Frontend to VPS
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_KEY }}
+          port: 22 # پورت پیش‌فرض اس‌اس‌اچ را صریحاً مشخص می‌کنیم
           script: |
             cd /var/www/karbama/frontend
             git pull origin main
