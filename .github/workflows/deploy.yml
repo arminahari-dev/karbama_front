@@ -14,10 +14,13 @@ jobs:
 
       - name: Update Docker Container
         run: |
+          # اضافه کردن مسیر پروژه به عنوان دایرکتوری امن برای گیت
           git config --global --add safe.directory /var/www/karbama/frontend
           
+          # رفتن به پوشه و آپدیت کد بدون نیاز به sudo
           cd /var/www/karbama/frontend
-          sudo git pull origin main
+          git pull origin main
           
+          # بیلد مجدد کانتینر فرانت (چون کاربر github عضو گروه docker است نیاز به sudo ندارد)
           cd /var/www/karbama
-          sudo docker compose up -d --build frontend
+          docker compose up -d --build frontend
