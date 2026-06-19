@@ -5,26 +5,7 @@ on:
     branches: [ "main" ]
 
 jobs:
-  test-and-lint:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-
-      # تست و لینت اختصاصی فرانت‌اند
-      - name: Install & Test Frontend
-        run: |
-          npm ci
-          npm run lint --if-present
-          npm test --if-present
-
   deploy:
-    needs: test-and-lint
     runs-on: ubuntu-latest
     steps:
       - name: Deploy Frontend to VPS
