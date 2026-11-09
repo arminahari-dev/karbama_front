@@ -88,14 +88,14 @@ const UsersTable: React.FC = () => {
                 <td>
                   {user?.role === "OWNER"
                     ? "کارفرما"
-                    : user?.role === "ّFREELANCER" && "فریلنسر"}
+                    : user?.role === "FREELANCER" && "فریلنسر"}
                 </td>
                 <td>
                   {user?.status == "1"
                     ? "در انتظار تایید"
                     : user?.status == "0"
-                    ? "رد شده"
-                    : "تایید شده"}
+                      ? "رد شده"
+                      : "تایید شده"}
                 </td>
                 <td>
                   <div className="flex justify-center">
@@ -122,7 +122,7 @@ const UsersTable: React.FC = () => {
           </tbody>
         </table>
       </div>
-      
+
       {showModal && (
         <EditModal
           content="وضعیت کاربر را انتخاب کنید"
